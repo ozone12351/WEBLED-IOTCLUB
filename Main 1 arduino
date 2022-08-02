@@ -47,9 +47,17 @@ void loop(){
             
             if (header.indexOf("G-LED=ON") != -1){
               Serial.println("GPIO23 LED is on");
+              LED_ONE_STATE = "on";
+              digitalWrite(GPIO23,HIGH);
               
             }
             
+            if (header.indexOf("G-LED=OFF") != -1){
+              Serial.println("GPIO23 LED is off");
+              LED_ONE_STATE = "off";
+              digitalWrite(GPIO23,LOW);
+              
+            }
             
           }
         }
