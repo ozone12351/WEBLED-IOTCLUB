@@ -11,11 +11,11 @@ const int GPIO23 = 23;
 void setup(){
   Serial.begin(115200);
   pinMode(GPIO23,OUTPUT);
-  
+
   digitalWrite(GPIO23,LOW);
-  
+
   Serial.println("Connecting to " + WIFI_NAME);
-  
+
   WiFi.begin(WIFI_NAME, WIFI_PASSWORD);
   while (WiFi.status()!= WL_CONNECTED){
     delay(1000);
@@ -32,36 +32,36 @@ void loop(){
     String current_data_line = "";
     while (client.connected()){
       if (client.available()){
-        
+
         char new_byte = client.read();
         Serial.write(new_byte);
         header += new_byte;
         if (new_byte == '\n') {
           if (current_data_line_length == 0){
-            
+
             client.println("Http/1.1 200 OK");
             client.println("Content-type : text/html");
             client.println("Connection: Close");
             client.println("");
-            
-            
+
+
             if (header.indexOf("G-LED=ON") != -1){
               Serial.println("GPIO23 LED is on");
               LED_ONE_STATE = "on";
               digitalWrite(GPIO23,HIGH);
-              
+
             }
-            
+
             if (header.indexOf("G-LED=OFF") != -1){
               Serial.println("GPIO23 LED is off");
               LED_ONE_STATE = "off";
               digitalWrite(GPIO23,LOW);
-              
+
             }
-            
+
           }
         }
-        
+
       }
     }
   }
