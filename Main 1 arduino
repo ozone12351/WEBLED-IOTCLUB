@@ -58,6 +58,13 @@ void loop(){
               digitalWrite(GPIO23,LOW);
               
             }
+            client.println("<!DOCTYPE html><html>")
+            client.println("<head><meta name=\"viewport\" "content=\" widht=device-width,intitial-scale=1\">")
+            client.println("<link rel=\ " icon\ " href=\ " data:,\">")
+            client.println("<style>html{ font-family: Helvetica; display: inline-block; margin :0px auto; text-align: center;}");
+            client.println(".button { background-: #4CAF50; border: 2px solid #4CAF50;; color: white; padding: 15px 32px; text-align: center; text_decoration: none; display: inline-block; font-size 16px; margin: 4px 2px; cursor: pointer;}");
+            
+            
             
           }
         }
